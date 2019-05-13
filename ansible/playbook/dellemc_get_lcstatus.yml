@@ -1,0 +1,13 @@
+
+---
+- hosts: poweredge
+  connection: local
+  name: Check LC Ready Status
+  gather_facts: False
+
+  tasks:
+  - name: Check LC Ready Status
+    dellemc_get_lcstatus:
+       idrac_ip:   "192.168.50.40"
+       idrac_user: "root"
+       idrac_pwd:  "calvin"
