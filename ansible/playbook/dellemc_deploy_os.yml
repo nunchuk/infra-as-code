@@ -1,0 +1,25 @@
+---
+-
+  connection: local
+  gather_facts: false
+  hosts: poweredge
+  name: Booting to Network Operating System image
+
+  vars:
+    idrac_ip: "192.168.50.40"
+    idrac_user: "root"
+    idrac_pwd: "calvin"
+    network_share: "192.168.130.74:/"
+    iso_image: "Cust_v1_VMware-VMvisor-Installer-6.7.0.update01-DellEMC_Customized-A03.iso"
+
+  tasks:
+    - name: "Deploy Operating System From A Remote Network Share"
+      dellemc_boot_to_network_iso:
+        idrac_ip: "{{ idrac_ip }}"
+        idrac_pwd: "{{ idrac_pwd }}"
+        idrac_user: "{{ idrac_user }}"
+        share_name: "{{ network_share }}"
+        iso_image: "{{ iso_image }}"
+
+      tags:
+        - deploy_os
